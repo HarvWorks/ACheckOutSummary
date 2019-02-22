@@ -3,15 +3,16 @@
  */
 
 import React, { Component } from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 
-type Props = {
-  
-};
+type Props = {};
 
 export default class Checkout extends Component<Props> {
   render() {
     return (
+      <View>
+        <Text>This is Checkout</Text>
+      </View>
     );
   }
 }
