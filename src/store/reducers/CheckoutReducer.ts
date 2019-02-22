@@ -1,4 +1,3 @@
-import { reducers } from "../../settings";
 import { checkoutActionTypes } from "../actions/actionTypes";
 
 import { IAction } from "../../types/common";
@@ -6,17 +5,18 @@ import { IItem } from "../../types/checkout";
 
 const { APPLY_COUPON_CODE } = checkoutActionTypes;
 
-const reducerName = reducers.CheckoutReducer;
-
-export interface ICheckoutReducer {
-  items: [IItem?];
-  promoCode: string;
+export interface ICheckoutPricing {
   tax: number;
   subTotalPrice: number;
   pickupSavings: number;
-  promocode: string;
   promoPercentage: number;
   promoDollar: number;
+  totalPrice: number;
+}
+
+export interface ICheckoutReducer extends ICheckoutPricing {
+  items: [IItem?];
+  promoCode: string;
 }
 
 export const initialState = {
@@ -25,15 +25,27 @@ export const initialState = {
   tax: 0,
   subTotalPrice: 0,
   pickupSavings: 0,
-  promocode: "",
   promoPercentage: 0,
-  promoDollar: 0
+  promoDollar: 0,
+  totalPrice: 0
   
 } as ICheckoutReducer;
 
 const applyCouponCode = (state: ICheckoutReducer, action: IAction) => {
-
+  const subTotal = calculateSubTotal(state.items)
 };
+
+const calculateSubTotal = (items: [IItem?]) => {
+  let result = 0;
+  items.map(item => {
+    result += item.unitPrice
+  })
+  return result
+}
+
+const calculateTotal = (state: ICheckoutReducer) => {
+
+}
 
 const getReducer = (
   type: string
