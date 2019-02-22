@@ -5,9 +5,22 @@
 import React, { Component } from 'react';
 import {Text, View} from 'react-native';
 
-type Props = {};
+import { connect } from "react-redux";
 
-export default class Checkout extends Component<Props> {
+type ICheckoutProps = {};
+
+const mapStateToProps = (state: any) => ({
+  popups: getPopups(state)
+});
+
+const mapDispatchToProps = (dispatch: any) => ({
+  storeTempNumber: (tempNumber: string) => storeTempNumber(tempNumber)(dispatch)
+});
+
+class Checkout extends Component<ICheckoutProps> {
+  constructor(props: ICheckoutProps) {
+    super(props);
+  }
   render() {
     return (
       <View>
@@ -16,3 +29,8 @@ export default class Checkout extends Component<Props> {
     );
   }
 }
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Checkout);

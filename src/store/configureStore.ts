@@ -2,12 +2,12 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 
 import thunk from 'redux-thunk';
 
-import checkout from './reducers/CheckoutReducer';
+import { CheckoutReducer } from './reducers';
 
 const composeEnhancers = window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as typeof compose || compose;
 
 const rootReducer = combineReducers({
-  checkout: checkout
+  CheckoutReducer: CheckoutReducer
 });
 
 const configureStore = () => {
