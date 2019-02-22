@@ -5,7 +5,7 @@ import { IItem } from "../../types/checkout";
 
 import { couponDiscounts } from "../../constants/couponCodes";
 import { pickupSavingsValue } from "../../constants/checkout";
-import { addItem, removeItem, initalizeItems } from "../actions/CheckoutActions";
+import listOfItems from "../../constants/listOfItems"
 
 const { 
   APPLY_COUPON_CODE,
