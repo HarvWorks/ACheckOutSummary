@@ -1,19 +1,33 @@
 import { reducers } from "../../settings";
-import { contactsActionTypes } from "../actions/actionTypes";
+import { checkoutActionTypes } from "../actions/actionTypes";
 
-const { FETCH_CONTACTS } = contactsActionTypes;
+import { IAction } from "../../types/common";
+import { IItem } from "../../types/checkout";
+
+const { APPLY_COUPON_CODE } = checkoutActionTypes;
 
 const reducerName = reducers.CheckoutReducer;
 
 export interface ICheckoutReducer {
-  items: [Item?];
+  items: [IItem?];
   promoCode: string;
-
+  tax: number;
+  subTotalPrice: number;
+  pickupSavings: number;
+  promocode: string;
+  promoPercentage: number;
+  promoDollar: number;
 }
 
 export const initialState = {
   items: [],
   promoCode: "",
+  tax: 0,
+  subTotalPrice: 0,
+  pickupSavings: 0,
+  promocode: "",
+  promoPercentage: 0,
+  promoDollar: 0
   
 } as ICheckoutReducer;
 
@@ -25,7 +39,7 @@ const getReducer = (
   type: string
 ): ((state: ICheckoutReducer, action: IAction) => any) => {
   const reducers = {
-    [FETCH_CONTACTS]: applyCouponCode
+    [APPLY_COUPON_CODE]: applyCouponCode
   };
   return reducers[type];
 };
@@ -38,7 +52,5 @@ const CheckoutReducer = (
 
   return reducer ? reducer(state, action) : state;
 };
-
-reducerRegistry.register(reducerName, CheckoutReducer);
 
 export default CheckoutReducer;
