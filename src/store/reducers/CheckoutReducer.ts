@@ -2,9 +2,14 @@ import { checkoutActionTypes } from "../actions/actionTypes";
 
 import { IAction } from "../../types/common";
 import { IItem } from "../../types/checkout";
-import { couponDiscounts } from "../../constants/couponCodes"
 
-const { APPLY_COUPON_CODE } = checkoutActionTypes;
+import { couponDiscounts } from "../../constants/couponCodes";
+import { pickupSavingsValue } from "../../constants/checkout";
+
+const { 
+  APPLY_COUPON_CODE,
+  TOGGLE_PICKUP
+ } = checkoutActionTypes;
 
 export interface ICheckoutPricing {
   tax: number;
@@ -66,6 +71,22 @@ const applyCouponCode = (state: ICheckoutReducer, action: IAction) => {
 };
 
 /**
+ * Function for toggling between picking up or not.
+ * @param state 
+ * @param action 
+ */
+const togglePickup = (state: ICheckoutReducer, action: IAction) => {
+  const nextState = {
+    ...state,
+    pickupSavings: state.pickupSavings === 0 ? calculatePickupSavings(state.subTotalPrice) : 0
+  }
+
+  nextState.totalPrice = calculateTotal(nextState);
+
+  return nextState
+}
+
+/**
  * Helper function for calculating the subTotal
  * @param items of type IItem
  */
@@ -90,11 +111,21 @@ const calculateTotal = (state: ICheckoutPricing) => {
   return totalPrice
 }
 
+/**
+ * Helper function to calculate the savings from picking up from the store
+ * @param subTotal 
+ */
+const calculatePickupSavings = (subTotal: number) => {
+  const savings = subTotal - pickupSavingsValue
+  return savings
+}
+
 const getReducer = (
   type: string
 ): ((state: ICheckoutReducer, action: IAction) => any) => {
   const reducers = {
-    [APPLY_COUPON_CODE]: applyCouponCode
+    [APPLY_COUPON_CODE]: applyCouponCode,
+    [TOGGLE_PICKUP]: togglePickup
   };
   return reducers[type];
 };
