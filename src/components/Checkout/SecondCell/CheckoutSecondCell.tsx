@@ -10,29 +10,35 @@ import BoldText from "../../common/BoldText";
 import styles from "./styles";
 
 interface IProps {
-  dollarSymbol: string;
-  subtotalPrice: string;
-  pickupSavings: string;
-  taxes: string;
-  zipCode: string;
+  dollarSymbol: String;
+  subtotalPrice: String;
+  pickupSavings: String;
+  taxes: String;
+  zipCode: String;
 }
 
 const CheckoutSecondCell: SFC<IProps> = props => {
-  const { dollarSymbol, subtotalPrice, pickupSavings, taxes, zipCode } = props
+  const { 
+    dollarSymbol = "",  
+    subtotalPrice = "", 
+    pickupSavings = "", 
+    taxes = "",  
+    zipCode = "Zip"
+  } = props
   const { red } = styles
 
   let savingsText;
 
-  if (pickupSavings.substring(0,1) === "0") {
-    savingsText = <BoldText style={red}>`-${dollarSymbol} ${subtotalPrice}`</BoldText>;
+  if (!pickupSavings || pickupSavings.substring(0,1) === "0") {
+    savingsText = <BoldText style={red}>{`-${dollarSymbol} ${subtotalPrice}`}</BoldText>;
   } else {
-    savingsText = <BoldText>`${dollarSymbol} ${subtotalPrice}`</BoldText>;
-  }
+    savingsText = <BoldText>{`${dollarSymbol} ${subtotalPrice}`}</BoldText>;
+  } 
 
   const taxesText = (
     <View>
       <StylizedText>{i18n.t("Checkout.taxes")}</StylizedText>
-      <StylizedText>{`(${i18n.t("Checkout.taxBased")} ${zipCode}}`}</StylizedText>
+      <StylizedText>{`(${i18n.t("Checkout.taxBased")} ${zipCode})`}</StylizedText>
     </View>
   )
 

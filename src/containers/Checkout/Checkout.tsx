@@ -7,9 +7,10 @@ import {Text, View, SafeAreaView} from 'react-native';
 
 import { connect } from "react-redux";
 
-import { ICheckoutReducer } from '../../store/reducers';
+import { ICheckoutReducer, IUserReducer } from '../../store/reducers';
 import { getCheckoutInfo } from '../../store/selectors/getCheckout';
-import { initalizeItems, applyCouponCode, togglePickup } from '../../store/actions/CheckoutActions';
+import { getUserInfo } from '../../store/selectors/getUser';
+import { initalizeItems, initalizeUser, applyCouponCode, togglePickup } from '../../store/actions';
 
 import CheckoutComponent from "../../components/Checkout/common/Checkout"
 import CheckoutCells from '../../components/Checkout/common/CheckoutCells';
@@ -19,15 +20,22 @@ import CheckoutThirdCell from '../../components/Checkout/ThirdCell/CheckoutThird
 import CheckoutFourthCell from '../../components/Checkout/ForthCell/CheckoutFourthCell';
 
 type IProps = {
-  checkoutInfo: ICheckoutReducer
+  checkoutInfo: ICheckoutReducer,
+  userInfo: IUserReducer,
+  initalizeItems: () => void,
+  initalizeUser: () => void,
+  applyCouponCode: (code: string) => void,
+  togglePickup: () => void,
 };
 
 const mapStateToProps = (state: any) => ({
-  checkoutInfo: getCheckoutInfo(state)
+  checkoutInfo: getCheckoutInfo(state),
+  userInfo: getUserInfo(state)
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
   initalizeItems: () => initalizeItems()(dispatch),
+  initalizeUser: () => initalizeUser()(dispatch),
   applyCouponCode: (code: string) => applyCouponCode(code)(dispatch),
   togglePickup: () => togglePickup()(dispatch)
 });
@@ -35,16 +43,22 @@ const mapDispatchToProps = (dispatch: any) => ({
 class Checkout extends Component<IProps> {
   constructor(props: IProps) {
     super(props);
-    initalizeItems();
+    props.initalizeItems();
+    props.initalizeUser();
   }
   
   render() {
+    const {checkoutInfo, userInfo} = this.props
     return (
       <SafeAreaView>
         <CheckoutComponent>
           <CheckoutFirstCell/>
-          <CheckoutSecondCell/>
-          <CheckoutThirdCell/>
+          <CheckoutSecondCell
+            dollarSymbol={userInfo.dollarSymbol}
+          />
+          <CheckoutThirdCell
+            dollarSymbol={userInfo.dollarSymbol}
+          />
           <CheckoutFourthCell/>
         </CheckoutComponent>
       </SafeAreaView>

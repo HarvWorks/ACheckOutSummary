@@ -9,5 +9,6 @@ const initalizeUserAction = () => ({
 })
 
 export const initalizeUser = () => (dispatch: any) => {
+  console.log("Is initalizeUser workings?");
   dispatch(initalizeUserAction());
 }

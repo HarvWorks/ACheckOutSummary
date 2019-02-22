@@ -55,5 +55,7 @@ export const removeItem = (index: number) => (dispatch: any) => {
 }
 
 export const initalizeItems = () => (dispatch: any) => {
+  console.log("Is initalizeItems workings?");
+  
   dispatch(initalizeItemsAction());
 }

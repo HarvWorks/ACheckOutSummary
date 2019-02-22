@@ -13,7 +13,7 @@ interface IProps {
 }
 
 const CheckoutThirdCell: SFC<IProps> = props => {
-  const { dollarSymbol, totalPrice } = props
+  const { dollarSymbol = "", totalPrice = "" } = props
   const { checkoutPrice, checkoutPriceDesc } = styles
   return (
     <CheckoutCells>
