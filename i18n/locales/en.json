@@ -1,5 +1,6 @@
 {
   "Checkout": {
+    "checkout": "Checkout",
     "subtotal": "Subtotal",
     "pickupSavings": "Pickup Savings",
     "pickupSavingsDesc": "",

@@ -5,8 +5,14 @@ import styles from "./styles";
 
 const CheckoutComponent: SFC = props => {
   const { children } = props
-  const { container } = styles
-  return <View style={container}>{children}</View>;
+  const { container, shadowContainer, spacers } = styles
+  return (
+    <View style={container}>
+      <View style={spacers}/>
+      <View style={shadowContainer}>{children}</View>
+      <View style={spacers}/>
+    </View>
+  );
 };
 
 export default CheckoutComponent;

@@ -1,20 +1,41 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 
 import commonColor from "../../constants/commonColor";
-import platform from "../../../../native-base-theme/variables/platform";
 
 const styles = StyleSheet.create({
   container: {
+    flexDirection: "row",
+    paddingTop: 50,
+  },
+  spacers: {
+    flex: 0.1,
+  },
+  shadowContainer: {
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: commonColor.white,
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 5,
     borderRadius: 10,
-    borderColor: commonColor.lightGrey,
+    borderColor: commonColor.grey,
     elevation: 1,
     shadowColor: commonColor.black,
-    shadowOpacity: 0.5,
-    shadowRadius: 1
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.25,
+    shadowRadius: 2,
+    flex: 1,
+    maxWidth: 250
+  },
+  cells: {
+    paddingVertical: 15,
+  },
+  cellsDivider: {
+    borderBottomColor: commonColor.grey,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  checkoutTitle: {
+    color: commonColor.black,
+    fontSize: 25
   }
 });
 
