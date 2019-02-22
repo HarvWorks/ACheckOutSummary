@@ -1,6 +1,6 @@
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 
-import commonColor from "../../constants/commonColor";
+import commonColor from "../../../constants/commonColor";
 
 const styles = StyleSheet.create({
   container: {

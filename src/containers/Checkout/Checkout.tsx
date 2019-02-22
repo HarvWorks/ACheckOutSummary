@@ -11,9 +11,9 @@ import { ICheckoutReducer } from '../../store/reducers';
 import { getCheckoutInfo } from '../../store/selectors';
 import { initalizeItems, applyCouponCode, togglePickup } from '../../store/actions/CheckoutActions';
 
-import CheckoutComponent from "../../components/Checkout/Checkout"
-import CheckoutCells from '../../components/Checkout/CheckoutCells';
-import CheckoutTitle from '../../components/Checkout/CheckoutTitle';
+import CheckoutComponent from "../../components/Checkout/common/Checkout"
+import CheckoutCells from '../../components/Checkout/common/CheckoutCells';
+import CheckoutFirstCell from '../../components/Checkout/FirstCell/CheckoutFirstCell';
 
 type IProps = {
   checkoutInfo: ICheckoutReducer
@@ -39,9 +39,7 @@ class Checkout extends Component<IProps> {
     return (
       <SafeAreaView>
         <CheckoutComponent>
-          <CheckoutCells>
-            <CheckoutTitle/>
-          </CheckoutCells>
+          <CheckoutFirstCell/>
           <CheckoutCells>
             <Text style={{color: "black"}}>HIIIIIIIdsjfkajdsjfkdskjajfkdjsjkfakjjsad</Text>
           </CheckoutCells>
