@@ -6,8 +6,13 @@ export const checkoutActionTypes = {
   ITITALIZE_ITEMS: "ITITALIZE_ITEMS",
 }
 
+export const userActionTypes = {
+  ITITALIZE_USER: "ITITALIZE_USER"
+}
+
 export const actionTypes = {
-  checkoutActionTypes
+  checkoutActionTypes,
+  userActionTypes
 };
 
 export default actionTypes;

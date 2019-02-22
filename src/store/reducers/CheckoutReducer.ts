@@ -60,7 +60,7 @@ const applyCouponCode = (state: ICheckoutReducer, action: IAction) => {
     couponDollar = discount[couponDollar] ? discount[couponDollar] : 0;
   }
 
-  const nextState = {
+  const nextState: ICheckoutReducer = {
     ...state,
     subTotalPrice: calculateSubTotal(state.items),
     couponCode: couponCode,
@@ -80,7 +80,7 @@ const applyCouponCode = (state: ICheckoutReducer, action: IAction) => {
  * @param action 
  */
 const togglePickup = (state: ICheckoutReducer, action: IAction) => {
-  const nextState = {
+  const nextState: ICheckoutReducer = {
     ...state,
     pickupSavings: state.pickupSavings === 0 ? calculatePickupSavings(state.subTotalPrice) : 0
   }
@@ -99,7 +99,8 @@ const addItem  = (state: ICheckoutReducer, action: IAction) => {
   const { items } = state;
   const { item } = action.payload
   
-  const newItems = items.push(item)
+
+  const newItems= [...items]
 
   const nextState = {
     ...state,
