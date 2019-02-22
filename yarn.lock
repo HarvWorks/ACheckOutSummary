@@ -4475,9 +4475,9 @@ react-native-gesture-handler@^1.0.16, react-native-gesture-handler@~1.0.14:
     invariant "^2.2.2"
     prop-types "^15.5.10"
 
-react-native-languages@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/react-native-languages/-/react-native-languages-3.0.2.tgz#c2c4c5050974fe4b50f7372051ca1f9824c1c778"
+react-native-localize@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-localize/-/react-native-localize-1.0.3.tgz#bc555e34f36082f84ce3b8da3cb036a5553a590d"
 
 react-native-safe-area-view@^0.12.0:
   version "0.12.0"
