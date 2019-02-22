@@ -1,0 +1,16 @@
+{
+  "Checkout": {
+    "subtotal": "Subtotal",
+    "pickupSavings": "Pickup Savings",
+    "pickupSavingsDesc": "",
+    "taxes": "Est. taxes & fees",
+    "taxBased": "Based on",
+    "total": "Est. Total",
+    "seeDetails": "See Item Details",
+    "hideDetails": "Hide Item Details",
+    "showCoupon": "Apply promo code",
+    "hideCoupon": "Hide promo code",
+    "coupon": "Promo code",
+    "apply": "Apply"
+  }
+}
