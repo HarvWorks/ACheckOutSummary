@@ -10,7 +10,7 @@ import rootNavigator from "./components/navigation/rootNavigator"
 import configureStore from './store/configureStore';
 
 const AppContainer = createAppContainer(rootNavigator);
-const store = configureStore;
+const store = configureStore();
 
 export default class App extends Component {
   render() {

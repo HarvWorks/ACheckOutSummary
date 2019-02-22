@@ -1,7 +1,7 @@
 import { checkoutActionTypes } from "../actions/actionTypes";
 
-import { IAction } from "../../types/common";
-import { IItem } from "../../types/checkout";
+import { IAction } from "../../../types/common";
+import { IItem } from "../../../types/checkout";
 
 import { couponDiscounts } from "../../constants/couponCodes";
 import { pickupSavingsValue } from "../../constants/checkout";

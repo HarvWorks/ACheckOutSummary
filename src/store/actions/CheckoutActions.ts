@@ -1,5 +1,5 @@
 import { checkoutActionTypes } from "./actionTypes";
-import { IItem } from "../../types/checkout";
+import { IItem } from "../../../types/checkout";
 
 const {
   APPLY_COUPON_CODE,

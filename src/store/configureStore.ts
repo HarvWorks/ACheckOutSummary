@@ -4,10 +4,10 @@ import thunk from 'redux-thunk';
 
 import checkout from './reducers/CheckoutReducer';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as typeof compose || compose;
 
 const rootReducer = combineReducers({
-  checkout: checkout,
+  checkout: checkout
 });
 
 const configureStore = () => {

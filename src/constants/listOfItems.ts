@@ -1,4 +1,4 @@
-import { IItem } from "../types/checkout";
+import { IItem } from "../../types/checkout";
 
 const listOfItems: IItem[] = [
   {
