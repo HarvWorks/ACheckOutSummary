@@ -2,6 +2,7 @@ import { checkoutActionTypes } from "../actions/actionTypes";
 
 import { IAction } from "../../types/common";
 import { IItem } from "../../types/checkout";
+import { couponDiscounts } from "../../constants/couponCodes"
 
 const { APPLY_COUPON_CODE } = checkoutActionTypes;
 
@@ -17,6 +18,7 @@ export interface ICheckoutPricing {
 export interface ICheckoutReducer extends ICheckoutPricing {
   items: [IItem?];
   couponCode: string;
+  badCouponCode: boolean
 }
 
 export const initialState = {
@@ -27,12 +29,27 @@ export const initialState = {
   pickupSavings: 0,
   couponPercentage: 0,
   couponDollar: 0,
-  totalPrice: 0
+  totalPrice: 0,
+  badCouponCode: false
   
 } as ICheckoutReducer;
 
+/**
+ * Function for applying the coupon code in the reducer.  Looks up the code
+ * @param state 
+ * @param action 
+ */
 const applyCouponCode = (state: ICheckoutReducer, action: IAction) => {
-  const { couponCode } = action.payload;
+  const couponCode = action.payload.couponCode.toLowerCase();
+
+  const discount = couponDiscounts[couponCode]
+  let couponPercentage = 0;
+  let couponDollar = 0;
+
+  if (discount) {
+    couponPercentage = discount[couponPercentage] ? discount[couponPercentage] : 0;
+    couponDollar = discount[couponDollar] ? discount[couponDollar] : 0;
+  }
 
   const nextState = {
     ...state,
@@ -48,6 +65,10 @@ const applyCouponCode = (state: ICheckoutReducer, action: IAction) => {
   return nextState
 };
 
+/**
+ * Helper function for calculating the subTotal
+ * @param items of type IItem
+ */
 const calculateSubTotal = (items: [IItem?]) => {
   let result = 0;
   items.map(item => {
@@ -56,6 +77,10 @@ const calculateSubTotal = (items: [IItem?]) => {
   return result
 }
 
+/**
+ * Helper function for calculating the total price
+ * @param state 
+ */
 const calculateTotal = (state: ICheckoutPricing) => {
   const { tax, subTotalPrice, pickupSavings, couponDollar, couponPercentage } = state;
 
