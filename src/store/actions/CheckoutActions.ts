@@ -34,7 +34,7 @@ const removeItemAction = (index: number) => ({
   }
 })
 
-const ititalizeItemsAction = () => ({
+const initalizeItemsAction = () => ({
   type: ITITALIZE_ITEMS
 })
 
@@ -54,6 +54,6 @@ export const removeItem = (index: number) => (dispatch: any) => {
   dispatch(removeItemAction(index));
 }
 
-export const ititalizeItems = () => (dispatch: any) => {
-  dispatch(ititalizeItemsAction());
+export const initalizeItems = () => (dispatch: any) => {
+  dispatch(initalizeItemsAction());
 }

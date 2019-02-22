@@ -5,7 +5,7 @@ import { IItem } from "../../types/checkout";
 
 import { couponDiscounts } from "../../constants/couponCodes";
 import { pickupSavingsValue } from "../../constants/checkout";
-import { addItem, removeItem, ititalizeItems } from "../actions/CheckoutActions";
+import { addItem, removeItem, initalizeItems } from "../actions/CheckoutActions";
 
 const { 
   APPLY_COUPON_CODE,
@@ -128,6 +128,26 @@ const removeItem  = (state: ICheckoutReducer, action: IAction) => {
   return nextState
 }
 
+const initalizeItems = (state: ICheckoutReducer, action: IAction) => {
+  const newItems = [];
+  const randomNumberItems = Math.ceil(Math.random() * 4);
+  const newListOfItems = [...listOfItems];
+
+  for ( let i = 0; i < randomNumberItems; i++) {
+    const tempIndex = Math.floor(Math.random() * newListOfItems.length)
+    const tempRandomItem: IItem = newListOfItems.splice(tempIndex, 1)[0];
+    tempRandomItem.quanity = Math.ceil(Math.random() * 5);
+    newItems.push(tempRandomItem)
+  }
+
+  const nextState = {
+    ...state,
+    items: newItems
+  }
+
+  return nextState
+}
+
 /**
  * Helper function for calculating the subTotal
  * @param items of type IItem
@@ -135,7 +155,7 @@ const removeItem  = (state: ICheckoutReducer, action: IAction) => {
 const calculateSubTotal = (items: [IItem?]) => {
   let result = 0;
   items.map(item => {
-    result += item.unitPrice
+    result += item.unitPrice * item.quanity
   })
   return result
 }
@@ -170,7 +190,7 @@ const getReducer = (
     [TOGGLE_PICKUP]: togglePickup,
     [ADD_ITEM]: addItem,
     [REMOVE_ITEM]: removeItem,
-    [ITITALIZE_ITEMS]: ititalizeItems
+    [ITITALIZE_ITEMS]: initalizeItems
   };
   return reducers[type];
 };
