@@ -6,7 +6,9 @@ const {
 
 const applyCouponCodeAction = (couponCode: string) => ({
   type: APPLY_COUPON_CODE,
-  payload: couponCode
+  payload: {
+    couponCode
+  }
 })
 
 export const applyCouponCode = (couponCode: string) => (dispatch: any) => {

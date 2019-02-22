@@ -9,30 +9,43 @@ export interface ICheckoutPricing {
   tax: number;
   subTotalPrice: number;
   pickupSavings: number;
-  promoPercentage: number;
-  promoDollar: number;
+  couponPercentage: number;
+  couponDollar: number;
   totalPrice: number;
 }
 
 export interface ICheckoutReducer extends ICheckoutPricing {
   items: [IItem?];
-  promoCode: string;
+  couponCode: string;
 }
 
 export const initialState = {
   items: [],
-  promoCode: "",
+  couponCode: "",
   tax: 0,
   subTotalPrice: 0,
   pickupSavings: 0,
-  promoPercentage: 0,
-  promoDollar: 0,
+  couponPercentage: 0,
+  couponDollar: 0,
   totalPrice: 0
   
 } as ICheckoutReducer;
 
 const applyCouponCode = (state: ICheckoutReducer, action: IAction) => {
-  const subTotal = calculateSubTotal(state.items)
+  const { couponCode } = action.payload;
+
+  const nextState = {
+    ...state,
+    subTotalPrice: calculateSubTotal(state.items),
+    couponCode: couponCode,
+    couponPercentage: couponPercentage,
+    couponDollar: couponDollar,
+    totalPrice: state.totalPrice
+  }
+
+  nextState.totalPrice = calculateTotal(nextState);
+
+  return nextState
 };
 
 const calculateSubTotal = (items: [IItem?]) => {
@@ -43,8 +56,13 @@ const calculateSubTotal = (items: [IItem?]) => {
   return result
 }
 
-const calculateTotal = (state: ICheckoutReducer) => {
+const calculateTotal = (state: ICheckoutPricing) => {
+  const { tax, subTotalPrice, pickupSavings, couponDollar, couponPercentage } = state;
 
+  const totalPrice = (subTotalPrice - pickupSavings - couponDollar) * 
+    ( 1 - couponPercentage) * ( 1 + tax)
+
+  return totalPrice
 }
 
 const getReducer = (
