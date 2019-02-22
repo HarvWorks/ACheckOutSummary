@@ -12,6 +12,7 @@
     "showCoupon": "Apply promo code",
     "hideCoupon": "Hide promo code",
     "coupon": "Promo code",
-    "apply": "Apply"
+    "apply": "Apply",
+    "couponError": "Bad Coupon Code, please try: \"promo10\", \"promo20\", or \"promobestday\""
   }
 }

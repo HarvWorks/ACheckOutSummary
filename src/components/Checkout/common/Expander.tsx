@@ -30,7 +30,7 @@ class Expander extends PureComponent<IProps, IState> {
   render() {
     const { children, openText, closeText } = this.props
     const { expanded } = this.state
-    const { expanderStyles, underlined } = styles;
+    const { expanderStyles, underlined, expanderInnerContainer } = styles;
 
     let content = (
       <TouchableOpacity onPress={this.toggleExpanderHandler}>
@@ -44,7 +44,9 @@ class Expander extends PureComponent<IProps, IState> {
           <TouchableOpacity onPress={this.toggleExpanderHandler}>
             <StylizedText><StylizedText style={underlined}>{closeText}</StylizedText> -</StylizedText>
           </TouchableOpacity>
-          {children}
+          <View style={expanderInnerContainer}>
+            {children}
+          </View>
         </>
       )
     }

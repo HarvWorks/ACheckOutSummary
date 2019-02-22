@@ -49,6 +49,9 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 15
+  },
+  expanderInnerContainer: {
+    paddingTop: 15
   }
 });
 

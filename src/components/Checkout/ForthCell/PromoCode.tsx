@@ -43,11 +43,12 @@ class PromoCode extends PureComponent <IProps, IState> {
 
   onPromoSubmit = () => {
     const { promoCode } = this.state;
+    const { applyCouponCode } = this.props
     applyCouponCode(promoCode);
   }
 
   render() {  
-    const { row, colorGrey, colorRed } = styles
+    const { row, colorGrey, colorRed, inputBox, inputContainer } = styles
     const { promoCode } = this.state
     const { badCouponCode } = this.props;
 
@@ -60,11 +61,13 @@ class PromoCode extends PureComponent <IProps, IState> {
       <>
         <StylizedText style={colorGrey}>{i18n.t("Checkout.coupon")}</StylizedText>
         <View style={row}>
-          <TextInput
-            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-            onChangeText={this.onPromoChange}
-            value={promoCode}
-          />
+          <View style={inputContainer}>
+            <TextInput
+              style={inputBox}
+              onChangeText={this.onPromoChange}
+              value={promoCode}
+            />
+          </View>
           <RoundedButton onPress={this.onPromoSubmit} text={i18n.t("Checkout.apply")}/>
         </View>
         {errorText}
