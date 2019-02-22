@@ -1,17 +1,16 @@
 import React, { SFC } from "react";
-import { Text } from "react-native";
 
-import styles from "../common/styles";
+import styles from "./styles";
 import i18n from "../../../../i18n";
 import CheckoutCells from "../common/CheckoutCells";
+import BoldText from "../../common/BoldText";
 
 const CheckoutFirstCell: SFC = props => {
   const { checkoutTitle } = styles
   return (
     <CheckoutCells>
-      <Text style={checkoutTitle}>{i18n.t("Checkout.checkout")}</Text>
+      <BoldText style={checkoutTitle}>{i18n.t("Checkout.checkout")}</BoldText>
     </CheckoutCells>
-    
   );
 };
 

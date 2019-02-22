@@ -12,6 +12,9 @@ const colors = {
   darkGrey: "#d6d6d6",
   grey: "#ccc",
   greylight: "#dddcdc",
+
+  // Reds
+  red: "#ff0000"
 }
 
 export default colors

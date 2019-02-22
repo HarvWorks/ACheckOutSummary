@@ -1,4 +1,4 @@
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { StyleSheet } from "react-native";
 
 import commonColor from "../../../constants/commonColor";
 
@@ -33,11 +33,6 @@ const styles = StyleSheet.create({
   cellsDivider: {
     borderBottomColor: commonColor.grey,
     borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  checkoutTitle: {
-    color: commonColor.black,
-    fontSize: 25,
-    fontWeight: "600"
   }
 });
 

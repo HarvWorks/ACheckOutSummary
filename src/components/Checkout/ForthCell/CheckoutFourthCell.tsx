@@ -8,7 +8,7 @@ import CheckoutCells from "../common/CheckoutCells";
 const CheckoutFourthCell: SFC = props => {
   const { checkoutTitle } = styles
   return (
-    <CheckoutCells>
+    <CheckoutCells isBottom>
       <Text style={checkoutTitle}>{i18n.t("Checkout.checkout")}</Text>
     </CheckoutCells>
     
