@@ -5,10 +5,14 @@ import { IItem } from "../../types/checkout";
 
 import { couponDiscounts } from "../../constants/couponCodes";
 import { pickupSavingsValue } from "../../constants/checkout";
+import { addItem, removeItem, ititalizeItems } from "../actions/CheckoutActions";
 
 const { 
   APPLY_COUPON_CODE,
-  TOGGLE_PICKUP
+  TOGGLE_PICKUP,
+  ADD_ITEM,
+  REMOVE_ITEM,
+  ITITALIZE_ITEMS,
  } = checkoutActionTypes;
 
 export interface ICheckoutPricing {
@@ -86,6 +90,20 @@ const togglePickup = (state: ICheckoutReducer, action: IAction) => {
   return nextState
 }
 
+const addItem  = (state: ICheckoutReducer, action: IAction) => {
+  const { items } = state;
+  const { item } = action.payload
+  
+  const newItems = items.push(item)
+
+  const nextState = {
+    ...state,
+    items: newItems
+  }
+
+  return nextState
+}
+
 /**
  * Helper function for calculating the subTotal
  * @param items of type IItem
@@ -125,7 +143,10 @@ const getReducer = (
 ): ((state: ICheckoutReducer, action: IAction) => any) => {
   const reducers = {
     [APPLY_COUPON_CODE]: applyCouponCode,
-    [TOGGLE_PICKUP]: togglePickup
+    [TOGGLE_PICKUP]: togglePickup,
+    [ADD_ITEM]: addItem,
+    [REMOVE_ITEM]: removeItem,
+    [ITITALIZE_ITEMS]: ititalizeItems
   };
   return reducers[type];
 };
