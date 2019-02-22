@@ -90,11 +90,35 @@ const togglePickup = (state: ICheckoutReducer, action: IAction) => {
   return nextState
 }
 
+/**
+ * Function for adding an item to the cart
+ * @param state 
+ * @param action 
+ */
 const addItem  = (state: ICheckoutReducer, action: IAction) => {
   const { items } = state;
   const { item } = action.payload
   
   const newItems = items.push(item)
+
+  const nextState = {
+    ...state,
+    items: newItems
+  }
+
+  return nextState
+}
+
+/**
+ * Function for removing an item from the cart
+ * @param state 
+ * @param action 
+ */
+const removeItem  = (state: ICheckoutReducer, action: IAction) => {
+  const { items } = state;
+  const { index } = action.payload
+  
+  const newItems = items.slice(0, index).concat(items.slice(index))
 
   const nextState = {
     ...state,
