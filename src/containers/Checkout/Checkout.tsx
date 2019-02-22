@@ -7,24 +7,34 @@ import {Text, View} from 'react-native';
 
 import { connect } from "react-redux";
 
-type ICheckoutProps = {};
+import { ICheckoutReducer } from '../../store/reducers';
+import { getCheckoutInfo } from '../../store/selectors';
+import { initalizeItems, applyCouponCode, togglePickup } from '../../store/actions/CheckoutActions';
+
+type IProps = {
+  checkoutInfo: ICheckoutReducer
+};
 
 const mapStateToProps = (state: any) => ({
-  popups: getPopups(state)
+  checkoutInfo: getCheckoutInfo(state)
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  storeTempNumber: (tempNumber: string) => storeTempNumber(tempNumber)(dispatch)
+  initalizeItems: () => initalizeItems()(dispatch),
+  applyCouponCode: (code: string) => applyCouponCode(code)(dispatch),
+  togglePickup: () => togglePickup()(dispatch)
 });
 
-class Checkout extends Component<ICheckoutProps> {
-  constructor(props: ICheckoutProps) {
+class Checkout extends Component<IProps> {
+
+  constructor(props: IProps) {
     super(props);
   }
+  
   render() {
     return (
       <View>
-        <Text>This is Checkout</Text>
+        <Text>{this.props.checkoutInfo.toString()}</Text>
       </View>
     );
   }
