@@ -1,4 +1,4 @@
-import { checkoutActionTypes } from "../actions/actionTypes";
+import { checkoutActionTypes } from "../actions";
 
 import { IAction } from "../../../types/common";
 import { IItem } from "../../../types/checkout";
@@ -155,7 +155,7 @@ const initalizeItems = (state: ICheckoutReducer, action: IAction) => {
 const calculateSubTotal = (items: [IItem?]) => {
   let result = 0;
   items.map(item => {
-    result += item.unitPrice * item.quanity
+    if (item) result += item.unitPrice * item.quanity
   })
   return result
 }

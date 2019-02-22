@@ -3,7 +3,7 @@
     "checkout": "Checkout",
     "subtotal": "Subtotal",
     "pickupSavings": "Pickup Savings",
-    "pickupSavingsDesc": "",
+    "pickupSavingsDesc": "Picking up the item in store helps cut costs, and we pass the savings to you.",
     "taxes": "Est. taxes & fees",
     "taxBased": "Based on",
     "total": "Est. Total",

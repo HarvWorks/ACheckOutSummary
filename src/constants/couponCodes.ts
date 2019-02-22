@@ -1,4 +1,6 @@
-export const couponDiscounts = {
+import ICouponDiscount from "../../types/checkout/ICouponDiscount";
+
+export const couponDiscounts: ICouponDiscount = {
   promo10: {
     percentage: 0.1
   },
