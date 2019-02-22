@@ -19,7 +19,7 @@ import CheckoutSecondCell from '../../components/Checkout/SecondCell/CheckoutSec
 import CheckoutThirdCell from '../../components/Checkout/ThirdCell/CheckoutThirdCell';
 import CheckoutFourthCell from '../../components/Checkout/ForthCell/CheckoutFourthCell';
 
-type IProps = {
+interface IProps {
   checkoutInfo: ICheckoutReducer,
   userInfo: IUserReducer,
   initalizeItems: () => void,
@@ -27,6 +27,10 @@ type IProps = {
   applyCouponCode: (code: string) => void,
   togglePickup: () => void,
 };
+
+interface IState {
+  decimalPlaces: number
+}
 
 const mapStateToProps = (state: any) => ({
   checkoutInfo: getCheckoutInfo(state),
@@ -40,24 +44,37 @@ const mapDispatchToProps = (dispatch: any) => ({
   togglePickup: () => togglePickup()(dispatch)
 });
 
-class Checkout extends Component<IProps> {
+class Checkout extends Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     props.initalizeItems();
     props.initalizeUser();
+    this.state = {
+      decimalPlaces: 2
+    }
   }
   
   render() {
+    const { decimalPlaces } = this.state
     const {checkoutInfo, userInfo} = this.props
+    const subTotalPrice = checkoutInfo.subTotalPrice.toFixed(decimalPlaces)
+    const taxes = checkoutInfo.tax.toFixed(decimalPlaces)
+    const pickupSavings = checkoutInfo.pickupSavings.toFixed(decimalPlaces)
+    const totalPrice = checkoutInfo.totalPrice.toFixed(decimalPlaces)
     return (
       <SafeAreaView>
         <CheckoutComponent>
           <CheckoutFirstCell/>
           <CheckoutSecondCell
             dollarSymbol={userInfo.dollarSymbol}
+            subtotalPrice={subTotalPrice}
+            taxes={taxes}
+            pickupSavings={pickupSavings}
+            zipCode={userInfo.zip}
           />
           <CheckoutThirdCell
             dollarSymbol={userInfo.dollarSymbol}
+            totalPrice={totalPrice}
           />
           <CheckoutFourthCell/>
         </CheckoutComponent>

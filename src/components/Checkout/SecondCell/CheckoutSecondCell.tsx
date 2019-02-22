@@ -25,14 +25,14 @@ const CheckoutSecondCell: SFC<IProps> = props => {
     taxes = "",  
     zipCode = "Zip"
   } = props
-  const { red } = styles
+  const { red, spacedText } = styles
 
   let savingsText;
 
-  if (!pickupSavings || pickupSavings.substring(0,1) === "0") {
-    savingsText = <BoldText style={red}>{`-${dollarSymbol} ${subtotalPrice}`}</BoldText>;
+  if (pickupSavings && pickupSavings.substring(0,1) !== "0") {
+    savingsText = <BoldText style={red}>{`-${dollarSymbol} ${pickupSavings}`}</BoldText>;
   } else {
-    savingsText = <BoldText>{`${dollarSymbol} ${subtotalPrice}`}</BoldText>;
+    savingsText = <BoldText>{`${dollarSymbol} ${pickupSavings}`}</BoldText>;
   } 
 
   const taxesText = (
@@ -44,15 +44,15 @@ const CheckoutSecondCell: SFC<IProps> = props => {
 
   return (
     <CheckoutCells>
-      <TwoColumnRow 
+      <TwoColumnRow style={spacedText}
         left= {<StylizedText>{i18n.t("Checkout.subtotal")}</StylizedText>}
         right={<BoldText>{`${dollarSymbol} ${subtotalPrice}`}</BoldText>}
       />
-      <TwoColumnRow 
+      <TwoColumnRow style={spacedText}
         left= {<StylizedText>{i18n.t("Checkout.pickupSavings")}</StylizedText>}
         right={savingsText}
       />
-      <TwoColumnRow 
+      <TwoColumnRow style={spacedText}
         left= {taxesText}
         right={<BoldText>{dollarSymbol} {taxes}</BoldText>}
       />

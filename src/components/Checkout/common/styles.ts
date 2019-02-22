@@ -33,6 +33,12 @@ const styles = StyleSheet.create({
   cellsDivider: {
     borderBottomColor: commonColor.grey,
     borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  expanderStyles: {
+    paddingVertical: 10
+  },
+  underlined: {
+    textDecorationLine: "underline"
   }
 });
 

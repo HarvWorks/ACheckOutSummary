@@ -16,6 +16,7 @@ const {
  } = checkoutActionTypes;
 
 export interface ICheckoutPricing {
+  taxRate: number;
   tax: number;
   subTotalPrice: number;
   pickupSavings: number;
@@ -25,7 +26,7 @@ export interface ICheckoutPricing {
 }
 
 export interface ICheckoutReducer extends ICheckoutPricing {
-  items: [IItem?];
+  items: IItem[];
   couponCode: string;
   badCouponCode: boolean
 }
@@ -33,6 +34,7 @@ export interface ICheckoutReducer extends ICheckoutPricing {
 export const initialState = {
   items: [],
   couponCode: "",
+  taxRate: 0.0975,
   tax: 0,
   subTotalPrice: 0,
   pickupSavings: 0,
@@ -85,6 +87,7 @@ const togglePickup = (state: ICheckoutReducer, action: IAction) => {
     pickupSavings: state.pickupSavings === 0 ? calculatePickupSavings(state.subTotalPrice) : 0
   }
 
+  nextState.tax = calculateTax(nextState)
   nextState.totalPrice = calculateTotal(nextState);
 
   return nextState
@@ -100,12 +103,16 @@ const addItem  = (state: ICheckoutReducer, action: IAction) => {
   const { item } = action.payload
   
 
-  const newItems= [...items]
+  const newItems= [...items, item]
 
-  const nextState = {
+  const nextState: ICheckoutReducer = {
     ...state,
     items: newItems
   }
+
+  nextState.subTotalPrice = calculateSubTotal(newItems);
+  nextState.tax = calculateTax(nextState)
+  nextState.totalPrice = calculateTotal(nextState)
 
   return nextState
 }
@@ -121,10 +128,14 @@ const removeItem  = (state: ICheckoutReducer, action: IAction) => {
   
   const newItems = items.slice(0, index).concat(items.slice(index))
 
-  const nextState = {
+  const nextState: ICheckoutReducer = {
     ...state,
     items: newItems
   }
+
+  nextState.subTotalPrice = calculateSubTotal(newItems);
+  nextState.tax = calculateTax(nextState)
+  nextState.totalPrice = calculateTotal(nextState)
 
   return nextState
 }
@@ -134,6 +145,11 @@ const initalizeItems = (state: ICheckoutReducer, action: IAction) => {
   const randomNumberItems = Math.ceil(Math.random() * 4);
   const newListOfItems = [...listOfItems];
 
+  let newPickupSavings = 0;
+  const randomSavings = Math.random() * 5
+
+  if (randomSavings > 2.5) newPickupSavings = randomSavings
+
   for ( let i = 0; i < randomNumberItems; i++) {
     const tempIndex = Math.floor(Math.random() * newListOfItems.length)
     const tempRandomItem: IItem = newListOfItems.splice(tempIndex, 1)[0];
@@ -141,10 +157,15 @@ const initalizeItems = (state: ICheckoutReducer, action: IAction) => {
     newItems.push(tempRandomItem)
   }
 
-  const nextState = {
+  const nextState: ICheckoutReducer = {
     ...state,
-    items: newItems
+    items: newItems,
+    pickupSavings: newPickupSavings
   }
+
+  nextState.subTotalPrice = calculateSubTotal(newItems);
+  nextState.tax = calculateTax(nextState)
+  nextState.totalPrice = calculateTotal(nextState)
 
   return nextState
 }
@@ -153,7 +174,7 @@ const initalizeItems = (state: ICheckoutReducer, action: IAction) => {
  * Helper function for calculating the subTotal
  * @param items of type IItem
  */
-const calculateSubTotal = (items: [IItem?]) => {
+const calculateSubTotal = (items: IItem[]) => {
   let result = 0;
   items.map(item => {
     if (item) result += item.unitPrice * item.quanity
@@ -162,14 +183,27 @@ const calculateSubTotal = (items: [IItem?]) => {
 }
 
 /**
+ * Helper function for calculating the tax
+ * @param state 
+ */
+const calculateTax = (state: ICheckoutPricing) => {
+  const { taxRate, subTotalPrice, pickupSavings, couponDollar, couponPercentage } = state;
+
+  const tax = (subTotalPrice - pickupSavings - couponDollar) * 
+    ( 1 - couponPercentage) * ( taxRate)
+
+  return tax
+}
+
+/**
  * Helper function for calculating the total price
  * @param state 
  */
 const calculateTotal = (state: ICheckoutPricing) => {
-  const { tax, subTotalPrice, pickupSavings, couponDollar, couponPercentage } = state;
+  const { taxRate, subTotalPrice, pickupSavings, couponDollar, couponPercentage } = state;
 
   const totalPrice = (subTotalPrice - pickupSavings - couponDollar) * 
-    ( 1 - couponPercentage) * ( 1 + tax)
+    ( 1 - couponPercentage) * ( 1 + taxRate)
 
   return totalPrice
 }

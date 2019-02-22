@@ -1,18 +1,22 @@
-import React, { SFC } from "react";
-import { Text } from "react-native";
+import React, { PureComponent } from "react";
 
-import styles from "../common/styles";
 import i18n from "../../../../i18n";
 import CheckoutCells from "../common/CheckoutCells";
+import Expander from "../common/Expander";
 
-const CheckoutFourthCell: SFC = props => {
-  const { checkoutTitle } = styles
-  return (
-    <CheckoutCells isBottom>
-      <Text style={checkoutTitle}>{i18n.t("Checkout.checkout")}</Text>
-    </CheckoutCells>
-    
-  );
+class CheckoutFourthCell extends PureComponent {
+  render() {
+    return (
+      <CheckoutCells isBottom>
+        <Expander 
+          openText={i18n.t("Checkout.seeDetails")} 
+          closeText={i18n.t("Checkout.hideDetails")}
+        >
+        </Expander>
+      </CheckoutCells>
+      
+    );
+  }
 };
 
 export default CheckoutFourthCell;
