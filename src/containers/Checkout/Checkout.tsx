@@ -28,6 +28,7 @@ const mapDispatchToProps = (dispatch: any) => ({
 class Checkout extends Component<IProps> {
   constructor(props: IProps) {
     super(props);
+    initalizeItems();
   }
   
   render() {
