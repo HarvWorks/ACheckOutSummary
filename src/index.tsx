@@ -4,19 +4,20 @@
 
 import React, { Component } from 'react';
 import { createAppContainer } from "react-navigation";
+import { Provider } from 'react-redux';
 
 import rootNavigator from "./components/navigation/rootNavigator"
+import configureStore from './store/configureStore';
 
-const AppContainer = createAppContainer(rootNavigator)
+const AppContainer = createAppContainer(rootNavigator);
+const store = configureStore;
 
-type Props = {
-  
-};
-
-export default class App extends Component<Props> {
+export default class App extends Component {
   render() {
     return (
-      <AppContainer/>
+      <Provider store={store}>
+        <AppContainer/>
+      </Provider>
     );
   }
 }
