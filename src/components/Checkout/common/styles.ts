@@ -2,6 +2,8 @@ import { StyleSheet } from "react-native";
 
 import commonColor from "../../../constants/commonColor";
 
+const buttonHeight = 25
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
@@ -39,6 +41,14 @@ const styles = StyleSheet.create({
   },
   underlined: {
     textDecorationLine: "underline"
+  },
+  roundedButton: {
+    borderColor: commonColor.black,
+    borderRadius: buttonHeight / 2,
+    height: buttonHeight
+  },
+  buttonText: {
+    fontSize: 15
   }
 });
 

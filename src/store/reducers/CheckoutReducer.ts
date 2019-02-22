@@ -56,10 +56,14 @@ const applyCouponCode = (state: ICheckoutReducer, action: IAction) => {
   const discount = couponDiscounts[couponCode]
   let couponPercentage = 0;
   let couponDollar = 0;
+  let error = false
 
   if (discount) {
     couponPercentage = discount[couponPercentage] ? discount[couponPercentage] : 0;
     couponDollar = discount[couponDollar] ? discount[couponDollar] : 0;
+  }
+  else {
+    error = true
   }
 
   const nextState: ICheckoutReducer = {
@@ -68,7 +72,8 @@ const applyCouponCode = (state: ICheckoutReducer, action: IAction) => {
     couponCode: couponCode,
     couponPercentage: couponPercentage,
     couponDollar: couponDollar,
-    totalPrice: state.totalPrice
+    totalPrice: state.totalPrice,
+    badCouponCode: error,
   }
 
   nextState.totalPrice = calculateTotal(nextState);

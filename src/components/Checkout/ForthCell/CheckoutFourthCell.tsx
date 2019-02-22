@@ -9,8 +9,8 @@ class CheckoutFourthCell extends PureComponent {
     return (
       <CheckoutCells isBottom>
         <Expander 
-          openText={i18n.t("Checkout.seeDetails")} 
-          closeText={i18n.t("Checkout.hideDetails")}
+          openText={i18n.t("Checkout.showCoupon")} 
+          closeText={i18n.t("Checkout.hideCoupon")}
         >
         </Expander>
       </CheckoutCells>

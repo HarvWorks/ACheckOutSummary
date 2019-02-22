@@ -11,3 +11,8 @@ export const getCheckoutInfo = createSelector(
   [getCheckoutReducerSelector],
   (CheckoutReducer: ICheckoutReducer) => CheckoutReducer
 );
+
+export const getbadCouponCodeInfo = createSelector(
+  [getCheckoutReducerSelector],
+  (CheckoutReducer: ICheckoutReducer) => CheckoutReducer.badCouponCode
+);
