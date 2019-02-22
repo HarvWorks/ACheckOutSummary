@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
   },
   cells: {
     paddingVertical: 15,
+    width: "100%"
   },
   cellsDivider: {
     borderBottomColor: commonColor.grey,
@@ -35,7 +36,8 @@ const styles = StyleSheet.create({
   },
   checkoutTitle: {
     color: commonColor.black,
-    fontSize: 25
+    fontSize: 25,
+    fontWeight: "600"
   }
 });
 
