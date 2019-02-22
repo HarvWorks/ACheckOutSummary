@@ -19,7 +19,7 @@ export const initialState = {
 
 
 const initalizeUser = (state: IUserReducer, action: IAction) => {
-  const dollarSymbols = ["$", "CA$", "€"];
+  const dollarSymbols = ["$", "£", "€"];
   const index = Math.floor(Math.random() * dollarSymbols.length)
   const newDollarSymbol = dollarSymbols[index];
   let newZip = "9";

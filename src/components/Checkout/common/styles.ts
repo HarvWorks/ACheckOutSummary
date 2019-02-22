@@ -52,6 +52,12 @@ const styles = StyleSheet.create({
   },
   expanderInnerContainer: {
     paddingTop: 15
+  },
+  imageStyle: {
+    width: 50
+  },
+  checkoutItemSpacing: {
+    marginTop: 15
   }
 });
 

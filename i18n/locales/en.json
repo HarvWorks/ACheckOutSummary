@@ -13,6 +13,7 @@
     "hideCoupon": "Hide promo code",
     "coupon": "Promo code",
     "apply": "Apply",
-    "couponError": "Bad Coupon Code, please try: \"promo10\", \"promo20\", or \"promobestday\""
+    "couponError": "Bad Coupon Code, please try: \"promo10\", \"promo20\", or \"promobestday\"",
+    "quanity": "Qty"
   }
 }
