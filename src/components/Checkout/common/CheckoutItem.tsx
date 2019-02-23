@@ -7,6 +7,7 @@ import BoldText from "../../common/BoldText";
 import TwoColumnRow from "../../common/TwoColumnRow";
 import StylizedText from "../../common/StyledText";
 import i18n from "../../../../i18n";
+import listOfPhotos from "../../../constants/listOfPhotos";
 
 interface IProps {
   item: IItem;
@@ -31,7 +32,7 @@ const CheckoutItem: SFC<IProps> = props => {
   const left = (
     <Image 
       style={imageStyle}
-      source={picture}
+      source={listOfPhotos[picture]}
     />
   )
 

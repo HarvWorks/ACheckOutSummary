@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { View, Animated, TouchableOpacity, Dimensions } from "react-native";
+import { View, Animated, TouchableOpacity, Dimensions, Modal } from "react-native";
 
 import styles from "./styles";
 import StylizedText from "../../common/StyledText";
@@ -29,7 +29,7 @@ class Tooltip extends PureComponent<IProps, IState> {
     const { tooltipExtended } = this.state;
     if (!tooltipExtended) {
       this.refs.container.measureInWindow((x, y, containerWidth) => {
-        this.setState({ x: containerWidth / 2, y: y, tooltipExtended: !tooltipExtended })
+        this.setState({ x: x + containerWidth / 2, y: y, tooltipExtended: !tooltipExtended })
       })
     } 
     else {
@@ -40,19 +40,25 @@ class Tooltip extends PureComponent<IProps, IState> {
   getRenderTooltip = () => {
     const { toolTipText } = this.props
     const { tooltipExtended, x, y } = this.state
-    const { tooltipStyle, upTriangleContainer, upTriangle } = styles;
+    const { tooltipStyle, upTriangle, background } = styles;
     let renderTooltip = null;
 
     if (tooltipExtended) {
       renderTooltip = (
-        <View style={{ top: 5, left: x - 200/2, position: "absolute" }}>
-          <View style={upTriangleContainer}>
-          <View style={upTriangle}/>
+        <TouchableOpacity onPress={this.toggleTooltipHandler} style={background}>
+          <View style={{ 
+            top: y + 5, 
+            left: x - 200/2, 
+            position: "absolute", 
+            alignContent: "center",
+            alignItems: "center"
+          }}>
+            <View style={upTriangle}/>
+            <View style={tooltipStyle}>
+              <StylizedText>{toolTipText}</StylizedText>
+            </View>
           </View>
-          <View style={tooltipStyle}>
-            <StylizedText>{toolTipText}</StylizedText>
-          </View>
-        </View>
+        </TouchableOpacity>
       )
     }
     return renderTooltip;
@@ -60,7 +66,7 @@ class Tooltip extends PureComponent<IProps, IState> {
 
   render() {
     const { toolTipLink } = this.props
-    const { } = styles;
+    const { tooltipExtended } = this.state;
 
     const tooltip = this.getRenderTooltip();
 
@@ -69,7 +75,13 @@ class Tooltip extends PureComponent<IProps, IState> {
         <TouchableOpacity onPress={this.toggleTooltipHandler}  ref={'container'}>
           {toolTipLink}
         </TouchableOpacity>
-        {tooltip}
+        <Modal
+          visible={tooltipExtended}
+          transparent={true}
+          onRequestClose={this.toggleTooltipHandler}
+        >
+          {tooltip}
+        </Modal>
       </View>
     );
   }

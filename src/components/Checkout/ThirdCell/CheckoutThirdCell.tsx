@@ -24,9 +24,6 @@ class CheckoutThirdCell extends PureComponent<IProps> {
     const { grey } = styles
     let renderItems;
 
-    console.log("listOfItems", listOfItems);
-    
-
     if (listOfItems && listOfItems.length > 0) {
       renderItems = listOfItems.map((item, index) => {
         return ( 
@@ -51,8 +48,6 @@ class CheckoutThirdCell extends PureComponent<IProps> {
     const { checkoutPrice, checkoutPriceDesc } = styles
 
     const renderItems = this.getRenderItems();
-
-    console.log("RenderItems", renderItems);
     
     return (
       <CheckoutCells>

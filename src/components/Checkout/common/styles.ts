@@ -82,11 +82,6 @@ const styles = StyleSheet.create({
     backgroundColor: commonColor.white,
     padding: 25,
   },
-  upTriangleContainer: {
-    alignContent: "center",
-    alignItems: "center",
-    zIndex: 2
-  },
   upTriangle: {
     width: 0,
     height: 0,
@@ -103,6 +98,11 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: - 2},
     shadowOpacity: 0.1,
     shadowRadius: 1,
+    zIndex: 2,
+  },
+  background: {
+    flex: 1,
+    backgroundColor: "transparent"
   }
 });
 
