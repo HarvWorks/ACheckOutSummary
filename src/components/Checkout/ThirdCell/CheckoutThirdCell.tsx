@@ -7,16 +7,52 @@ import CheckoutCells from "../common/CheckoutCells";
 import TwoColumnRow from "../../common/TwoColumnRow";
 import BoldText from "../../common/BoldText";
 import Expander from "../common/Expander";
+import { IItem } from "../../../../types/checkout";
+import StylizedText from "../../common/StyledText";
+import CheckoutItem from "../common/CheckoutItem";
 
 interface IProps {
   dollarSymbol: String;
   totalPrice: String;
+  listOfItems: IItem[]
 }
 
 class CheckoutThirdCell extends PureComponent<IProps> {
+
+  getRenderItems = () => {
+    const { listOfItems, dollarSymbol } = this.props
+    const { grey } = styles
+    let renderItems;
+
+    console.log("listOfItems", listOfItems);
+    
+
+    if (listOfItems && listOfItems.length > 0) {
+      renderItems = listOfItems.map((item, index) => {
+        return ( 
+          <CheckoutItem 
+            first={index === 0}
+            dollarSymbol={dollarSymbol}
+            item={item}
+          />
+        )
+      })
+    }
+    else {
+      renderItems = <StylizedText style={grey}>{i18n.t("Checkout.noItems")}</StylizedText>
+    }
+
+    return renderItems
+  }
+
   render() {
     const { dollarSymbol = "", totalPrice = "" } = this.props
     const { checkoutPrice, checkoutPriceDesc } = styles
+
+    const renderItems = this.getRenderItems();
+
+    console.log("RenderItems", renderItems);
+    
     return (
       <CheckoutCells>
         <TwoColumnRow 
@@ -27,6 +63,7 @@ class CheckoutThirdCell extends PureComponent<IProps> {
           openText={i18n.t("Checkout.seeDetails")} 
           closeText={i18n.t("Checkout.hideDetails")}
         >
+          {renderItems}
         </Expander>
       </CheckoutCells>
     );

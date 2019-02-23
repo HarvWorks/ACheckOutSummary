@@ -31,7 +31,7 @@ const CheckoutItem: SFC<IProps> = props => {
   const left = (
     <Image 
       style={imageStyle}
-      source={require(`../../../static/productImages/${picture}`)}
+      source={picture}
     />
   )
 

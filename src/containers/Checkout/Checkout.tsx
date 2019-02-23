@@ -61,6 +61,7 @@ class Checkout extends Component<IProps, IState> {
     const taxes = checkoutInfo.tax.toFixed(decimalPlaces)
     const pickupSavings = checkoutInfo.pickupSavings.toFixed(decimalPlaces)
     const totalPrice = checkoutInfo.totalPrice.toFixed(decimalPlaces)
+    
     return (
       <SafeAreaView>
         <CheckoutComponent>
@@ -75,6 +76,7 @@ class Checkout extends Component<IProps, IState> {
           <CheckoutThirdCell
             dollarSymbol={userInfo.dollarSymbol}
             totalPrice={totalPrice}
+            listOfItems={checkoutInfo.items}
           />
           <CheckoutFourthCell/>
         </CheckoutComponent>

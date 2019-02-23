@@ -3,7 +3,7 @@ interface IItem {
   title: string;
   description?: string;
   quanity: number;
-  picture: string;
+  picture: any;
 }
 
 export default IItem;
