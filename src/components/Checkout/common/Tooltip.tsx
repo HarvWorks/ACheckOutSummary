@@ -45,7 +45,7 @@ class CheckoutCells extends PureComponent<IProps, IState> {
 
     if (tooltipExtended) {
       renderTooltip = (
-        <Animated.View style={{ top: y, left: x, position: "absolute" }}>
+        <Animated.View style={{ top: y, left: x - 150/2, position: "absolute" }}>
           <View style={tooltipStyle}>
             <StylizedText>{toolTipText}</StylizedText>
           </View>

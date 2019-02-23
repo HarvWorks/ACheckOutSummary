@@ -31,6 +31,7 @@ class CheckoutThirdCell extends PureComponent<IProps> {
       renderItems = listOfItems.map((item, index) => {
         return ( 
           <CheckoutItem 
+            key={index}
             first={index === 0}
             dollarSymbol={dollarSymbol}
             item={item}

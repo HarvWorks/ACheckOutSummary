@@ -1,17 +1,19 @@
 import React, { SFC } from "react";
-import { View } from "react-native";
+import { View, ScrollView } from "react-native";
 
 import styles from "./styles";
 
 const CheckoutComponent: SFC = props => {
   const { children } = props
-  const { container, shadowContainer, spacers } = styles
+  const { container, shadowContainer, spacers, scrollViewContainer } = styles
   return (
-    <View style={container}>
-      <View style={spacers}/>
-      <View style={shadowContainer}>{children}</View>
-      <View style={spacers}/>
-    </View>
+    <ScrollView style={scrollViewContainer}>
+      <View style={container}>
+        <View style={spacers}/>
+        <View style={shadowContainer}>{children}</View>
+        <View style={spacers}/>
+      </View>
+    </ScrollView>
   );
 };
 

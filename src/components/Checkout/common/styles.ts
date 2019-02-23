@@ -5,9 +5,12 @@ import commonColor from "../../../constants/commonColor";
 const buttonHeight = 25
 
 const styles = StyleSheet.create({
+  scrollViewContainer: {
+    height: "100%",
+  },
   container: {
     flexDirection: "row",
-    paddingTop: 50,
+    paddingVertical: 50,
   },
   spacers: {
     flex: 0.1,
@@ -54,10 +57,18 @@ const styles = StyleSheet.create({
     paddingTop: 15
   },
   imageStyle: {
-    width: 50
+    width: 50,
+    height: 50
   },
   checkoutItemSpacing: {
     marginTop: 15
+  },
+  rightStyle: {
+    flex: 1,
+    paddingLeft: 15
+  },
+  itemPaddingTop: {
+    paddingTop: 10
   }
 });
 

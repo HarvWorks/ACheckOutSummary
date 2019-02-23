@@ -22,7 +22,7 @@ const CheckoutItem: SFC<IProps> = props => {
     quanity,
     picture
   } = item;
-  const { imageStyle, checkoutItemSpacing } = styles
+  const { imageStyle, checkoutItemSpacing, rightStyle, itemPaddingTop } = styles
 
   let dynamicStyling;
 
@@ -36,13 +36,13 @@ const CheckoutItem: SFC<IProps> = props => {
   )
 
   const right = (
-    <>
+    <View style={rightStyle}>
       <StylizedText>{title}</StylizedText>
-      <TwoColumnRow>
-        <BoldText>{`${dollarSymbol} ${unitPrice}`}</BoldText>
-        <StylizedText>{`${i18n.t("Checkout.quanity")}:${quanity}`}</StylizedText>
-      </TwoColumnRow>
-    </>
+      <TwoColumnRow style={itemPaddingTop}
+        left= {<BoldText>{`${dollarSymbol} ${unitPrice}`}</BoldText>}
+        right={<StylizedText>{`${i18n.t("Checkout.quanity")}:${quanity}`}</StylizedText>}
+      />
+    </View>
   )
 
   return (
