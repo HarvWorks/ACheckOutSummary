@@ -69,6 +69,17 @@ const styles = StyleSheet.create({
   },
   itemPaddingTop: {
     paddingTop: 10
+  },
+  tooltipStyle: {
+    borderRadius: 5,
+    borderColor: commonColor.grey,
+    elevation: 1,
+    shadowColor: commonColor.black,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.25,
+    shadowRadius: 2,
+    width: 150,
+    backgroundColor: commonColor.white,
   }
 });
 

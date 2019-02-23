@@ -8,6 +8,7 @@ import StylizedText from "../../common/StyledText";
 import BoldText from "../../common/BoldText";
 
 import styles from "./styles";
+import Tooltip from "../common/Tooltip";
 
 interface IProps {
   dollarSymbol: String;
@@ -25,7 +26,7 @@ const CheckoutSecondCell: SFC<IProps> = props => {
     taxes = "",  
     zipCode = "Zip"
   } = props
-  const { red, spacedText } = styles
+  const { red, spacedText, underlined } = styles
 
   let savingsText;
 
@@ -42,6 +43,13 @@ const CheckoutSecondCell: SFC<IProps> = props => {
     </View>
   )
 
+  const pickupSavingsText = (
+    <Tooltip
+      toolTipLink={<StylizedText style={underlined}>{i18n.t("Checkout.pickupSavings")}</StylizedText>}
+      toolTipText={i18n.t("Checkout.pickupSavingsDesc")}
+    />
+  )
+
   return (
     <CheckoutCells>
       <TwoColumnRow style={spacedText}
@@ -49,7 +57,7 @@ const CheckoutSecondCell: SFC<IProps> = props => {
         right={<BoldText>{`${dollarSymbol} ${subtotalPrice}`}</BoldText>}
       />
       <TwoColumnRow style={spacedText}
-        left= {<StylizedText>{i18n.t("Checkout.pickupSavings")}</StylizedText>}
+        left= {pickupSavingsText}
         right={savingsText}
       />
       <TwoColumnRow style={spacedText}

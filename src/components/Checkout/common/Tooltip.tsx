@@ -15,7 +15,7 @@ interface IState {
   y: number;
 }
 
-class CheckoutCells extends PureComponent<IProps, IState> {
+class Tooltip extends PureComponent<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
@@ -29,7 +29,7 @@ class CheckoutCells extends PureComponent<IProps, IState> {
     const { tooltipExtended } = this.state;
     if (!tooltipExtended) {
       this.refs.container.measureInWindow((x, y, containerWidth) => {
-        this.setState({ x: x + containerWidth / 2, y: y, tooltipExtended: !tooltipExtended })
+        this.setState({ x: containerWidth / 2, y: y, tooltipExtended: !tooltipExtended })
       })
     } 
     else {
@@ -41,15 +41,15 @@ class CheckoutCells extends PureComponent<IProps, IState> {
     const { toolTipText } = this.props
     const { tooltipExtended, x, y } = this.state
     const { tooltipStyle } = styles;
-    let renderTooltip;
+    let renderTooltip = null;
 
     if (tooltipExtended) {
       renderTooltip = (
-        <Animated.View style={{ top: y, left: x - 150/2, position: "absolute" }}>
+        <View style={{ top: 20, left: x - 150/2, position: "absolute", zIndex: 100 }}>
           <View style={tooltipStyle}>
             <StylizedText>{toolTipText}</StylizedText>
           </View>
-        </Animated.View>
+        </View>
       )
     }
     return renderTooltip;
@@ -59,7 +59,7 @@ class CheckoutCells extends PureComponent<IProps, IState> {
     const { toolTipLink } = this.props
     const { } = styles;
 
-    const tooltip = this.getRenderTooltip;
+    const tooltip = this.getRenderTooltip();
 
     return (
       <View>
@@ -72,4 +72,4 @@ class CheckoutCells extends PureComponent<IProps, IState> {
   }
 };
 
-export default CheckoutCells;
+export default Tooltip;

@@ -8,6 +8,9 @@ const styles = StyleSheet.create({
   },
   spacedText: {
     paddingVertical: 12
+  },
+  underlined: {
+    textDecorationLine: "underline"
   }
 });
 
