@@ -28,8 +28,8 @@ class CheckoutCells extends PureComponent<IProps, IState> {
   toggleTooltipHandler = () => {
     const { tooltipExtended } = this.state;
     if (!tooltipExtended) {
-      this.refs.container.measureInWindow((x, y, containerWidth, containerHeight) => {
-
+      this.refs.container.measureInWindow((x, y, containerWidth) => {
+        this.setState({ x: x + containerWidth / 2, y: y, tooltipExtended: !tooltipExtended })
       })
     } 
     else {
@@ -62,8 +62,8 @@ class CheckoutCells extends PureComponent<IProps, IState> {
     const tooltip = this.getRenderTooltip;
 
     return (
-      <View ref={'container'}>
-        <TouchableOpacity onPress={this.toggleTooltipHandler}>
+      <View>
+        <TouchableOpacity onPress={this.toggleTooltipHandler}  ref={'container'}>
           {toolTipLink}
         </TouchableOpacity>
         {tooltip}

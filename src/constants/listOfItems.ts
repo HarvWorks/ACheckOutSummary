@@ -11,7 +11,7 @@ const listOfItems: IItem[] = [
     title: "Apple AirPods",
     quanity: 0,
     unitPrice: 202.95,
-    picture: require("MMEF2.jpeg")
+    picture: require("../static/productImages/MMEF2.jpeg")
   },
   {
     title: "Sony PlayStation 4, PSVR Headset with Borderlands 2 & Beat Saber, Black, 3003264",
