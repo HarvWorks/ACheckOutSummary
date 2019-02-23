@@ -56,7 +56,7 @@ const CheckoutSecondCell: SFC<IProps> = props => {
         left= {<StylizedText>{i18n.t("Checkout.subtotal")}</StylizedText>}
         right={<BoldText>{`${dollarSymbol} ${subtotalPrice}`}</BoldText>}
       />
-      <TwoColumnRow style={spacedText}
+      <TwoColumnRow style={[spacedText, {zIndex:2}]}
         left= {pickupSavingsText}
         right={savingsText}
       />
