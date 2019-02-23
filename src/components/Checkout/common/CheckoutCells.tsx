@@ -5,11 +5,12 @@ import styles from "./styles";
 
 interface IProps {
   isBottom?: Boolean;
+  style?: object;
 }
 
 class CheckoutCells extends PureComponent<IProps> {
   render() {
-    const { children, isBottom } = this.props
+    const { children, isBottom, style } = this.props
     const { cells, cellsDivider } = styles;
     let cellStyles = [];
 
@@ -17,6 +18,9 @@ class CheckoutCells extends PureComponent<IProps> {
 
     if (!isBottom) {
       cellStyles.push(cellsDivider);
+    }
+    if (style) {
+      cellStyles.push(style);
     }
 
     return (

@@ -76,10 +76,33 @@ const styles = StyleSheet.create({
     elevation: 1,
     shadowColor: commonColor.black,
     shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.25,
-    shadowRadius: 2,
-    width: 150,
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+    width: 200,
     backgroundColor: commonColor.white,
+    padding: 25,
+  },
+  upTriangleContainer: {
+    alignContent: "center",
+    alignItems: "center",
+    zIndex: 2
+  },
+  upTriangle: {
+    width: 0,
+    height: 0,
+    backgroundColor: 'transparent',
+    borderStyle: 'solid',
+    borderLeftWidth: 15,
+    borderRightWidth: 15,
+    borderBottomWidth: 30,
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    borderBottomColor: commonColor.white,
+    elevation: 1,
+    shadowColor: commonColor.black,
+    shadowOffset: { width: 0, height: - 2},
+    shadowOpacity: 0.1,
+    shadowRadius: 1,
   }
 });
 

@@ -26,7 +26,7 @@ const CheckoutSecondCell: SFC<IProps> = props => {
     taxes = "",  
     zipCode = "Zip"
   } = props
-  const { red, spacedText, underlined } = styles
+  const { red, spacedText, underlined, container } = styles
 
   let savingsText;
 
@@ -51,7 +51,7 @@ const CheckoutSecondCell: SFC<IProps> = props => {
   )
 
   return (
-    <CheckoutCells>
+    <CheckoutCells style={container}>
       <TwoColumnRow style={spacedText}
         left= {<StylizedText>{i18n.t("Checkout.subtotal")}</StylizedText>}
         right={<BoldText>{`${dollarSymbol} ${subtotalPrice}`}</BoldText>}

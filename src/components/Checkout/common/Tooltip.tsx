@@ -40,12 +40,15 @@ class Tooltip extends PureComponent<IProps, IState> {
   getRenderTooltip = () => {
     const { toolTipText } = this.props
     const { tooltipExtended, x, y } = this.state
-    const { tooltipStyle } = styles;
+    const { tooltipStyle, upTriangleContainer, upTriangle } = styles;
     let renderTooltip = null;
 
     if (tooltipExtended) {
       renderTooltip = (
-        <View style={{ top: 20, left: x - 150/2, position: "absolute", zIndex: 100 }}>
+        <View style={{ top: 5, left: x - 200/2, position: "absolute" }}>
+          <View style={upTriangleContainer}>
+          <View style={upTriangle}/>
+          </View>
           <View style={tooltipStyle}>
             <StylizedText>{toolTipText}</StylizedText>
           </View>
